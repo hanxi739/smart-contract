@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>server</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+
+    <script src="../../node_modules/web3/dist/web3.min.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../js/server.js"></script>
+
+</head>
+<body>
+	
+	<div class="container">
+
+        <div class="menu">
+            <button class="menuBtn focusMenuBtn" id="loginBtn">登　　录</button>
+            <button class="menuBtn" id="balanceBtn" disabled="true">查看　余额</button>
+            <button class="menuBtn" id="applyBtn" disabled="true">创建　验证</button>         
+            <button class="menuBtn" id="checkReplyBtn" disabled="true">查看　回复</button>
+            <button class="menuBtn" id="startBtn" disabled="true">开始　验证</button>
+            <button class="menuBtn" id="resultBtn" disabled="true">查看验证结果</button>
+            <button class="menuBtn" id="recordBtn" disabled="true">查看验证记录</button>
+        </div>
+        <div class="content"></div>
+        
+        <div class="menuEle " id="loginForm"> 
+            <br><br><br><br>
+
+            <label>请输入您的以太坊平台账号与密码</label><br><br><br>
+            <table>
+                <tr>
+                    <input type="text" id="account"  placeholder="账号">
+                </tr>
+                <tr>
+                    <input type="password"  id="password" placeholder="密码">
+                </tr>
+                <tr >
+                    <button id="login" onclick="login()">登录</button>
+                </tr>
+                <tr>
+                    <p id="tipForLogin" style="color: red"></p>
+                </tr>
+            </table>
+            
+            
+            
+        </div>
+        <div class="menuEle none" id="balanceForm">
+            <button id="getBalance" onclick="getBalance()"> 查看余额</button>
+            <label>您的账号是：</label>
+            <p id="adress"></p>
+
+            <label>您的当前余额有：</label>
+            <p id="balance"></p>
+        </div>
+        <div class="menuEle none" id="applyForm">
+            <table>
+                <tr>
+                    <h3>请仔细填写以下验证内容及费用，然后点击申请验证</h3>
+                </tr>
+                <tr>
+                    <td>
+                        <label>数据拥有者账号：</label>
+                    </td>
+                    <td>
+                         <input type="text"  id="dataOwnerApply" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                         <label>数据使用者账号：</label>
+                    </td>
+                    <td>
+                         <input type="text" id="dataUserApply">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                         <label>搜索关键词:</label>
+                    </td>
+                    <td>
+                         <input type="text" id="keyWordApply" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                         <label>数据使用者支付给云服务器的费用(wei)：</label>
+                    </td>
+                    <td>
+                         <input type="text" id="fee1Apply" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                         <label>数据使用者支付给数据拥有者的费用(wei)：</label>
+                    </td>
+                    <td>
+                         <input type="text" id="fee2Apply" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                         <label>云服务器支付给数据拥有者的费用(wei)：</label>
+                    </td>
+                    <td>
+                         <input type="text" id="fee3Apply" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <button id="applyVerify" onclick="apply()" >创建验证</button>
+                    </td>
+                     
+                </tr>
+
+            </table>
+        </div>
+        <div class="menuEle none" id="checkReplyForm">
+             <h3>您收到一条验证回复</h3>
+            <p id="idReply"></p>
+            <p id="dataUseReply"></p>
+            <p id="agreedReply"></p>
+            <button id="addData">补充验证数据以开始验证</button>
+            <button id="closeReply">关闭</button>
+
+        </div>
+         <div class="menuEle none" id="startForm">
+             <h3>请您填写可搜索加密结果，点击下方按钮开始验证</h3>
+             <label>验证记录编号：</label>
+            <input type="text" id="idStart">
+            <label>搜索到的文件编号：</label>
+            <input type="text" id="ansList">
+            <label>文件摘要：</label>
+            <input type="text" id="ansHash">
+            <button id="startVerify" onclick="startVerify()">开始验证</button>
+        </div>
+        
+        <div class="menuEle none" id="resultForm">
+            <h3>您收到一条新的验证结果，请查看并记录！</h3>
+            <p id="idResult"></p>
+            <p id="dataUserResult"></p>
+            <p id="dataOwnerResult"></p>
+            <p id="tipResult"></p>
+            <button id="closeResult">关闭</button>
+        </div>
+        <div class="menuEle none" id="recordsForm">
+            <button id="getRecord" onclick="getRecords()">读取我的验证记录</button>
+            <h3>您的验证记录如下：</h3>
+            <h1>考虑在这里画表</h1>
+        </div> 
+        <div class="menuEle none" id="nothingForm"> 
+            <h3>没有收到新消息，休息一下吧～</h3>
+            
+        </div>
+    </div>
+
+</body>
+</html>

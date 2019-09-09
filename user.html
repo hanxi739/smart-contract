@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>user</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+
+    <script src="../../node_modules/web3/dist/web3.min.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+
+    <script type="text/javascript" src="../js/user.js"></script>
+</head>
+<body>
+	
+	<div class="container">
+        <div class="menu" >
+            <button class="menuBtn focusMenuBtn" id="loginBtn">登   录</button>
+            <button class="menuBtn" id="balanceBtn" disabled="true">查看 余额</button>
+            <button class="menuBtn" id="replyBtn" disabled="true">回复 申请</button>
+            <button class="menuBtn" id="aidBtn" disabled="true">协助 验证</button>
+            <button class="menuBtn" id="verifyBtn" disabled="true">执行 验证</button>
+            <button class="menuBtn" id="resultBtn" disabled="true">我的验证结果</button>
+            <button class="menuBtn" id="aidResultBtn" disabled="true">我的协助结果</button>
+            <button class="menuBtn" id="recordBtn" disabled="true">我的验证记录</button>
+            <button class="menuBtn " id="aidRecordBtn" disabled="true">我的协助记录</button>
+        </div>
+    
+        <div class="content" >
+                
+           
+
+            <div class="menuEle" id="loginForm">
+                <h2>登　　　录</h2>
+                <label>请输入您的以太坊平台账号与密码:</label>
+                <input type="text"  placeholder="账号" id="account">
+                <input type="password"  placeholder="密码" id="password">
+                <button id="login" onclick="login()">登录</button>
+                <p id="tipForLogin" style="color: red"></p>
+            </div>
+
+            <div class="menuEle none" id="balanceForm">
+                <button id="getBalance" onclick="getBalance()"> 查看余额</button>
+                <label>您的账号是：</label>
+                <p id="address"></p>
+                <label>您的当前余额有：</label>
+                <p id="balance"></p>
+            </div>
+
+            <div class="menuEle none" id="replyForm">
+                 <h3>请仔细检查以下验证内容及费用，并选择同意或放弃验证:</h3>
+                <p id="idReply"></p>
+                <p id="serverReply"></p>
+                <p id="dataOwnerReply"></p>
+                <p id="keyWordReply"></p>
+                <p id="fee1"></p>
+                <p id="fee2"></p>
+                <input type="radio" name="agreeChoice" value="true">同意验证
+                <input type="radio" name="agreeChoice" value="false">放弃验证
+                <button id="reply" onclick="reply()" >确  定</button>
+            </div>
+
+            <div class="menuEle none" id="aidForm">               
+                <h3>有需要您协助的验证，请尽快帮助验证！</h3><!-- 这里需要修改一下合约代码,补充一下事件参数-->
+                        <p id="idAid"></p>
+                        <p id="serverAid"></p>
+                        <p id="keyWordAid"></p><!-- 这里需要修改一下合约代码,补充一下事件参数-->
+
+                <table>
+                    <tr>
+                        <td>
+                            <label>索引文件：</label>
+                        </td>
+                        <td>
+                            <input type="file" id="index" >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                           <label>哈希文件：</label> 
+                        </td>
+                        <td>
+                            <input type="file" id="hash"　>
+                        </td>
+                    </tr>
+                </table>
+                        <button id="upload" onclick="upload()">上传文件</button>
+                        <button id="offerIndex" onclick="offerIndex()">协助验证</button>
+                        <p id="tipAid"></p>
+            </div>
+
+            <div class="menuEle none" id="verifyForm" >
+                <h3>您的验证申请所需数据已就绪，请执行验证吧！</h3>
+                <p id="idVerify"></p>
+                <p id="serverVerify"></p>
+                <p id="dataOwnerVerify"></p>
+                <p id="keyWordVerify"></p>
+                <p id="tipVerify"></p>
+                <button id="agreeDeal" onclick="verify()">执行验证</button>
+            </div>
+
+            <div class="menuEle none" id="resultForm">
+                <h3>您收到一条新的验证结果，请查看并记录！</h3>
+                <p id="idResult"></p>
+                <p id="serverResult"></p>
+                <p id="dataOwnerResult"></p>
+                <p id="keyWordResult"></p>
+                <p id="accuracyResult"></p>
+                <p id="ansListResult"></p>
+                <p id="tipResult"></p>
+                <button id="closeResult">关闭</button>
+            </div>
+            
+            <div class="menuEle none" id="aidResultForm">
+                <h3>您收到一条新的协助验证结果，请查看并记录！</h3>
+                <p id="idAidResult"></p>
+                <p id="serverAidResult"></p>
+                <p id="accuracyAidResult"></p>
+                <p id="tipAidResult"></p>
+                <button id="closeAidResult">关闭</button>
+            </div>
+
+            <div class="menuEle none" id="recordsForm">
+                <button id="getRecords" onclick="getUserRecords()">读取我的验证记录</button>
+                <h3>您的验证记录如下：</h3>
+                <h1>考虑在这里画表</h1>
+            </div>
+
+            <div class="menuEle none" id="aidRecordsForm">
+                <button id="getAidRecords" onclick="getOwnerRecords()">读取我的协助验证记录</button>
+                <h3>您的协助验证记录如下：</h3>
+                <h1>考虑在这里画表</h1>
+            </div>
+             <div class="menuEle none" id="nothingForm"> 
+            <h3>没有收到新消息，休息一下吧～</h3>
+            
+        </div>
+        </div>
+
+
+    </div>
+
+</body>
+</html>

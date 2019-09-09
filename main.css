@@ -1,0 +1,76 @@
+body {
+    background-color:#F0F0F0;
+    padding: 2em;
+    font-family: 'Raleway','Source Sans Pro', 'Arial';
+}
+.container {
+    width: 1000px;
+    height: 600px;
+    margin: 0 auto;
+   background: url(../img/back.jpeg) no-repeat;
+}
+.menu {
+    text-align: center;
+    width: 120px;
+    height: 600px;
+    float: left;
+}
+.content {
+    width: 880px;
+    height: 600px;
+    position: relative;
+    float: right;
+/*  position: relative;*/
+}
+.menuEle{
+    width: 700px;
+    height: 500px;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0; 
+    text-align: center;
+}
+label {
+    display:block;
+    margin-bottom:10px;
+}
+input {
+    padding:10px;
+    width: 330px;
+    display: inline;
+    margin-bottom: 1em;
+}
+
+.foucs-btn{
+    margin: 2em 0;
+    padding: 1em 4em;
+    display:block;
+}
+
+#info {
+    padding:1em;
+    background-color:#fff;
+    margin: 1em 0;
+}
+.none{
+	display:none;
+}
+button{
+    display: block;
+    margin: 0 auto;
+}
+.menuBtn{
+    border-radius: 2px;
+    display:block;
+    width: 120px;
+    background-color: #EECFA1;
+    font-weight: bold;
+
+}
+.focusMenuBtn{
+    font-size: 14px;
+    display:block;
+    background-color:#EECFA1;
+    font-weight: bolder;
+    border:1px solid black;
+}
